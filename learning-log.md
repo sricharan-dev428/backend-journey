@@ -11,3 +11,15 @@ push. Debugged a rejected push (unrelated histories) and fixed it with pull
 --allow-unrelated-histories --no-rebase. SSH auth already working.
 Weak: repository (local, .git) vs remote (GitHub) — commit != push. Rebase unclear.
 Next: HashMap.
+
+
+Day 3: 08/24/2026
+Phase 1 (Core Java) — HashMap, concept only, no code yet.
+Derived from scratch: hashing, modulo compression, buckets, collisions
+(pigeonhole), separate chaining, hashCode() picks the bucket / equals() picks
+the entry, degeneration to O(n), mutable-key trap.
+Weak: saying "calculate a key" instead of "hash the key"; explaining the
+mutable-key problem out loud (fix: narrate put -> mutate -> lookup).
+Next: write HashMap code — put, get, containsKey, iterate.
+
+Implemented HashMap code
