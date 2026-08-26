@@ -23,3 +23,14 @@ mutable-key problem out loud (fix: narrate put -> mutate -> lookup).
 Next: write HashMap code — put, get, containsKey, iterate.
 
 Implemented HashMap code
+
+Day 4: 08/26/2026
+Phase 1 — HashMap in code. Wrote UserRegistry.java: put/get/containsKey/
+getOrDefault, duplicate-key overwrite, keySet/values/entrySet iteration.
+Compiled with javac, ran with java — saw .class bytecode produced.
+Phase 0 — added .gitignore for *.class; learned .gitignore only affects
+UNTRACKED files (git rm --cached for already-tracked), and that committed
+secrets must be rotated, not deleted.
+Weak: skipping predictions before running; "equals compares hash codes"
+(it compares the keys); saying iteration order is "random" (it's unspecified).
+Next: equals() and hashCode() contract — write a class used as a HashMap key.
