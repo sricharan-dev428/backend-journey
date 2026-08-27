@@ -34,3 +34,15 @@ secrets must be rotated, not deleted.
 Weak: skipping predictions before running; "equals compares hash codes"
 (it compares the keys); saying iteration order is "random" (it's unspecified).
 Next: equals() and hashCode() contract — write a class used as a HashMap key.
+
+Day 5: 08/27/2026
+Phase 1 — equals() and hashCode(). Wrote PointDemo.java: watched two
+value-identical objects fail as HashMap keys (different identity hashes,
+size grew to 2), then overrode both methods on Point and saw put/get behave
+correctly (size stayed 1). Hash written by hand as x*31+y.
+Learned: Object.equals() IS ==; identity vs equality; both methods must be
+driven by the SAME fields; mutating a key in-place makes the entry
+unreachable while size() still counts it.
+Weak: "equals compares hash codes" resurfaced (it compares KEYS);
+reading own code for intent instead of what's written (SQL alias bug).
+Next: recap + start Set / HashSet, or SQL joins practice.
