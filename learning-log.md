@@ -46,3 +46,17 @@ unreachable while size() still counts it.
 Weak: "equals compares hash codes" resurfaced (it compares KEYS);
 reading own code for intent instead of what's written (SQL alias bug).
 Next: recap + start Set / HashSet, or SQL joins practice.
+
+Day 6: 08/28/2026
+Phase 1 — Set/HashSet. Wrote SetDemo.java: dedup via HashSet, add() return
+value as duplicate check, contains(), unspecified iteration order, Point in a
+Set. Deliberately commented out hashCode() and watched size go 1 -> 2:
+contract violation observed, not just read.
+Learned: HashSet IS a HashMap using only keys with a dummy value; put()
+replaces the VALUE, keeps the original KEY (so the second equal object is
+discarded); Set vs Map decided by whether you need associated data.
+Phase 3 — anti-join written cold and correct on 3rd attempt.
+Weak: saying Set stores "keys" (it stores elements); building a test that
+couldn't fail (added one Point instead of two).
+Next: recap, then choose — more collections (List/ArrayList internals) or
+back to SQL.
