@@ -1,3 +1,23 @@
+Day 8: 08/31/2026
+Phase 1 (Core Java) — exception mechanism, hands-on with Boom.java.
+Learned: stack unwinding — a throw pops frames one at a time searching for a
+handler; an unwound frame NEVER resumes (level2/level1 "end" lines never ran),
+which is exactly why intermediate methods need no error-handling code. Catching
+stops the unwinding at the first matching handler; frames below it are
+untouched and main exits with status 0. Catch matching is an instanceof check
+against the Throwable hierarchy (Error is a SIBLING of Exception, so
+catch(Exception) won't swallow OutOfMemoryError). Catch blocks match top-down,
+first match wins — narrowest first, broadest last.
+Compile-time vs runtime, twice: statement after an unconditional throw =
+unreachable statement error; broad catch before narrow = "already been caught"
+error; but a catch that simply never matches at runtime compiles fine.
+Thread (NOW depth only): one thread = one call stack; an exception unwinds one
+stack — a dying request thread doesn't kill a server.
+Predicted before running every time, unprompted — 9 predictions, 7 exact; both
+misses were compiler behaviour, not exception behaviour.
+Next: checked vs unchecked — why two kinds, and why IndexOutOfBoundsException
+is unchecked.
+
 Day 7: 08/29/2026
 Phase 1/2 (collections) — ArrayList internals. Derived resizing from scratch:
 grow-by-1 = ~499,500 copies for 1,000 adds vs doubling = 1,023. Learned
