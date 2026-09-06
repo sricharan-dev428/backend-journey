@@ -1,3 +1,25 @@
+Day 09: 09/03/2026
+Phase 1 (Core Java) — checked vs unchecked exceptions. Unchecked
+(RuntimeException) = a BUG in calling code, preventable by writing it correctly
+(IndexOutOfBounds, NPE) — should crash loudly, the stack trace IS the value.
+Checked (IOException, SQLException) = external conditions no correct code
+prevents — compiler forces catch-or-declare. Know the criticism: empty catch
+blocks satisfy the compiler and destroy the failure; throws leaks upward through
+every caller; no language after Java copied them; Spring wraps SQLException as
+unchecked.
+Judgement rule: catch ONLY when there's something real to do (default, retry,
+fallback). No meaningful fallback -> propagate. DB URL missing = propagate;
+optional theme setting = default. "throws" on a method that catches internally
+is a lying signature.
+Wrote ConfigReader.java both ways: pure propagation (stderr trace, exit 1) and
+genuine recovery (no throws, stderr message, usable default, exit 0).
+Stack trace method: read line 1 (type + message), skip java.base/ frames, find
+first frame that's MY code, then read call path bottom-up. Caused by: = LATER.
+Mistakes, all one theme — trusting intent over what's actually there: wrote
+catch-print-return-null right after arguing against it; read output as expected
+rather than actual; ran a stale .class (java before javac).
+Next: finally — why it exists vs just putting code after the try/catch.
+
 Day 8: 08/31/2026
 Phase 1 (Core Java) — exception mechanism, hands-on with Boom.java.
 Learned: stack unwinding — a throw pops frames one at a time searching for a
