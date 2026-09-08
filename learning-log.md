@@ -1,3 +1,23 @@
+Day 10: 09/06/2026
+Phase 1 (Core Java) — finally. Guarantees cleanup on EVERY exit path: normal
+completion, caught exception, uncaught exception unwinding through, return,
+break, continue. "Code after the try/catch" fails two ways: (1) a return/break
+inside the try skips it entirely, (2) an exception the catch doesn't match
+unwinds straight past it.
+Two distinct mechanisms, got these confused: exception unwinding = run finally,
+THEN discard frame, continue unwinding. Normal return = evaluate return value,
+PARK it, run finally, then exit.
+Proved the park with weirder()/weirdest(): return in a finally discards the
+parked value silently; return in a finally during unwinding DESTROYS the
+exception — no trace, no exit code, failure erased. Rule: finally is cleanup
+only, never return/break/continue/throw.
+try-with-resources (Java 7+) = the modern form; compiles to try/finally, can't
+be forgotten, and preserves the original exception if close() also throws.
+Works with any AutoCloseable — files, streams, JDBC Connections in Phase 3.
+Weak: explained a normal return via the unwinding mechanism (no exception was
+involved); said "it returned already" when the whole point is it hadn't yet.
+Next: custom exceptions — extending RuntimeException vs Exception.
+
 Day 09: 09/03/2026
 Phase 1 (Core Java) — checked vs unchecked exceptions. Unchecked
 (RuntimeException) = a BUG in calling code, preventable by writing it correctly
