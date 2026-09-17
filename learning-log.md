@@ -1,3 +1,21 @@
+Day 11: 09/17/2026
+Phase 1 (Core Java) — custom exceptions. Returned after a 10-day break (family
+incident); both retrieval items came back cold and correct — return-parking and
+hashCode-picks-bucket/equals-picks-entry. Learned: catch dispatches on TYPE
+only, so a shared exception type forces callers to string-match the message.
+Checked-vs-unchecked needs a second axis beyond "is it external" — how far the
+throw site is from any caller that can act (why Spring unchecks SQLException).
+Chose checked here: startup read, main is the direct handler. Exceptions are
+objects — carry structured fields (getKey()), not prose. Chaining: catching one
+and throwing another DESTROYS the original unless passed as cause; a String
+can't hold the stack trace inside URI.create(). Wrote both exception classes,
+compiled, predicted all four outputs exactly.
+Weak: spoken explanation collapses into buzzwords under "interview" framing
+even when the written version is concrete — fixed with 4 anchors, 5 reps aloud.
+Also: parse vs "pass", threw vs "through".
+Next: readConfig() throwing both types, caught separately — show what the
+caller actually does differently in each branch.
+
 Day 10: 09/06/2026
 Phase 1 (Core Java) — finally. Guarantees cleanup on EVERY exit path: normal
 completion, caught exception, uncaught exception unwinding through, return,
