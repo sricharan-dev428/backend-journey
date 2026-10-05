@@ -1,3 +1,17 @@
+Day 12: 10/05/2026
+Phase 1 (Core Java) — bad day, ~25 min, one task. Returned after 15 days.
+Designed Config + ConfigReader separation: Config holds values (String url,
+int port, both final), ConfigReader holds the parse/validate logic. Decided
+the String->int conversion happens ONCE inside readConfig so every downstream
+caller receives a validated port and can't fail again. Signature settled:
+Config readConfig(Map<String,String>) throws InvalidConfigValueException,
+MissingConfigKeyException. Noticed the old Day 9 readConfig(String) overload
+is dead code doing an unrelated job under the same name — deleting it, Git has
+it at 888310f.
+Weak: still outstanding from Sept 20 — the two axes for checked vs unchecked,
+untested. Also: stated int, wrote String, in the same message.
+Next: constructor + getters on Config so the final fields can be set.
+
 Day 11: 09/17/2026
 Phase 1 (Core Java) — custom exceptions. Returned after a 10-day break (family
 incident); both retrieval items came back cold and correct — return-parking and
