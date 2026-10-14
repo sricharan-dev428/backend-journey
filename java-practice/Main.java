@@ -1,13 +1,19 @@
 public class Main {
-    public static void main(String[] args)
-            throws InvalidConfigValueException {
+    public static void main(String[] args) {
 
-        throw new InvalidConfigValueException(
-            "database.url",
-            "not-a-real-url",
-            new IllegalArgumentException(
-                "Illegal character in scheme name at index 0"
-            )
-        );
+        String[] urls = {
+            "postgres://localhost:5432/mydb",
+            "hello world",
+            ""
+        };
+
+        for (String url : urls) {
+            try {
+                Config config = new Config(url, 8080);
+                System.out.println("SUCCESS: " + url);
+            } catch (IllegalArgumentException e) {
+                System.out.println("FAILED: " + e.getMessage());
+            }
+        }
     }
 }
