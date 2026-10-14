@@ -1,3 +1,23 @@
+Day 13: 10/13-14/2026
+Phase 1 (Core Java) — finished readConfig end to end; exceptions closed.
+Retrieval: the two checked/unchecked axes came back cold after being deferred
+twice. Config is now an immutable value object — final fields, no setters,
+validation in the constructor (null/blank, URI.create + isAbsolute, port range),
+throwing IllegalArgumentException because passing -1 IS a caller bug. Learned
+constructor throws = no object created, so no half-built Config exists; that is
+what "protecting the invariant" means, not "make fields private". readConfig
+re-checks the port range anyway — the constructor says "out of range" but never
+says WHICH key, and the operator needs that. Convert/validate at the boundary.
+Worked out independently that three sequential new Config() calls would stop at
+the first throw and silently skip the rest — rebuilt as a loop with try/catch
+per case, which is what JUnit does. 4 test maps, 4/4 predictions exact.
+Added toString() with @Override; recorded the decision that credentials never
+go in toString() because that output reaches logs.
+Weak: swapped same-typed constructor args twice (url passed as key) — compiles
+clean, message lies. Also changed an error MESSAGE to claim a guarantee the
+CHECK didn't enforce. Same root cause as always: intent over what's written.
+Next: Maven.
+
 Day 12: 10/05/2026
 Phase 1 (Core Java) — bad day, ~25 min, one task. Returned after 15 days.
 Designed Config + ConfigReader separation: Config holds values (String url,
