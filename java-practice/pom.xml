@@ -1,0 +1,14 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- identity: the item you missed -->
+  <groupId>com.yourname</groupId>
+  <artifactId>config-reader</artifactId>
+  <version>0.1.0</version>
+
+  <!-- compilation instructions -->
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+</project>
